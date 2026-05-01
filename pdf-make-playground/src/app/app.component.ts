@@ -27,9 +27,10 @@ export class AppComponent {
         {
           table: {
             widths: ['*', '*'],
-            heights: ['auto', 160], // 👈 2 rows = 2 heights
+            heights: ['auto', 150, 200], // 👈 3 rows = 3 heights
             body: [
               [
+                //FIRST ROW
                 {
                   //column 1 start
                   stack: [
@@ -259,6 +260,7 @@ export class AppComponent {
                 },
               ],
               [
+                //SECOND ROW
                 {
                   stack: [
                     { text: ' Buyer', fontSize: 9, bold: false },
@@ -274,6 +276,80 @@ export class AppComponent {
                 },
                 {},
               ],
+              [
+                //third row
+                {
+                  colSpan: 2,
+                  table: {
+                    widths: [17,230,45,45,45,20,'*'],
+                    body: [
+                      [//description vala table uska row1 
+                        { 
+                          stack:[
+                            {text:"SI",fontSize:10,alignment: 'center'},
+                            {text:"No",fontSize:8,margin: [0, 0, 0, 0],alignment: 'center'}
+                          ],
+                          margin: [3, 3, 3, 3],
+                          alignment: 'center' // 👈 IMPORTANT (parent pe bhi)
+                        },
+                        { text: 'Description of Services',fontSize:9,margin: [0, 3, 0, 3],alignment: 'center'},
+                        { text: 'HSN/SAC',fontSize:9,margin: [0, 3, 0, 3],alignment: 'center' },
+                        { text: 'Quantity',fontSize:9,margin: [0, 3, 0, 3],alignment: 'center' },
+                        { text: 'Rate',fontSize:9,margin: [0, 3, 0, 3],alignment: 'center' },
+                        { text: 'per',fontSize:9,margin: [0, 3, 0, 3],alignment: 'center' },
+                        { text: 'Amount',fontSize:9,margin: [0, 3, 0, 3],alignment: 'center' }
+                      ],
+                      // [
+                      //   //row 2 idhar likhna hain woh description and subdescription.
+                      // ]
+                    ],
+                  },
+                  margin: [0, 0, 0, 0],
+                  layout: {
+                    paddingLeft: () => 0,
+                    paddingRight: () => 0,
+                    paddingTop: () => 0,
+                    paddingBottom: () => 0,
+                    // hLineWidth: (i: number, node: any) => (i === 0 ? 0 : 0.5),
+                    // hLineWidth: (i: number, node: any) => {
+                    //   if (i === node.table.body.length) return 0; // ❌ hide bottom border
+                    //   return 0.5;
+                    // },
+                    // vLineWidth: (i: number, node: any) => (i === 0 ? 0 : 0.5),
+                    hLineWidth: (i: number, node: any) => {
+                      // ❌ remove top & bottom outer lines
+                      if (i === 0) return 0;
+                      return 0.5;
+                    },
+
+                    vLineWidth: (i: number, node: any) => {
+                      // ❌ remove left & right outer lines
+                      if (i === 0 || i === node.table.widths.length) return 0;
+                      return 0.5;
+                    },
+                  },
+                },
+              ],
+              // [//fourth row
+              //   {
+              //     colSpan: 2,
+              //     table:{
+              //       widths: [17,230,45,45,45,20,'*'],
+              //       body:[
+              //         [
+              //           {
+              //             stack:[
+              //               {text:"SI",fontSize:10,alignment: 'center'},
+              //               {text:"No",fontSize:8,margin: [0, 0, 0, 0],alignment: 'center'}
+              //             ],
+              //             margin: [3, 3, 3, 3],
+              //             alignment: 'center' // 👈 IMPORTANT (parent pe bhi)
+              //           }
+              //         ]
+              //       ]
+              //     }
+              //   }
+              // ],
             ],
           },
           layout: {
