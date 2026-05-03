@@ -12,6 +12,278 @@ import pdfFonts from 'pdfmake/build/vfs_fonts';
 export class AppComponent {
   title = 'pdf-make-playground';
   testDeclaration() {
+    const MAX_ROWS = 10;
+    const ITEM_ROW_HEIGHT = 18; // tune this — matches your row with desc+sub
+    const HEADER_ROW_HEIGHT = 16;
+    const TAX_ROW_HEIGHT = 14;
+
+    const allItemRows = [];
+
+    const items = [
+      {
+        desc: 'Repairing of Chain Hoist',
+        sub: 'Replacement of Lock Pin 8 No.',
+        hsn: '9987',
+        qty: 1,
+        rate: 7966,
+        per: ' ',
+        amount: 7966,
+      },
+      {
+        desc: 'Repairing of Chain Hoist',
+        sub: 'Replacement of Lock Pin 8 No.',
+        hsn: '9987',
+        qty: 1,
+        rate: 7966,
+        per: ' ',
+        amount: 7966,
+      },
+      {
+        desc: 'Repairing of Chain Hoist',
+        sub: 'Replacement of Lock Pin 8 No.',
+        hsn: '9987',
+        qty: 1,
+        rate: 7966,
+        per: ' ',
+        amount: 7966,
+      },
+      {
+        desc: 'Repairing of Chain Hoist',
+        sub: 'Replacement of Lock Pin 8 No.',
+        hsn: '9987',
+        qty: 1,
+        rate: 7966,
+        per: ' ',
+        amount: 7966,
+      },
+      {
+        desc: 'Repairing of Chain Hoist',
+        sub: 'Replacement of Lock Pin 8 No.',
+        hsn: '9987',
+        qty: 1,
+        rate: 7966,
+        per: ' ',
+        amount: 7966,
+      },
+      {
+        desc: 'Repairing of Chain Hoist',
+        sub: 'Replacement of Lock Pin 8 No.',
+        hsn: '9987',
+        qty: 1,
+        rate: 7966,
+        per: ' ',
+        amount: 7966,
+      },
+      {
+        desc: 'Repairing of Chain Hoist',
+        sub: 'Replacement of Lock Pin 8 No.',
+        hsn: '9987',
+        qty: 1,
+        rate: 7966,
+        per: ' ',
+        amount: 7966,
+      },
+      {
+        desc: 'Repairing of Chain Hoist',
+        sub: 'Replacement of Lock Pin 8 No.',
+        hsn: '9987',
+        qty: 1,
+        rate: 7966,
+        per: ' ',
+        amount: 7966,
+      },
+      {
+        desc: 'Repairing of Chain Hoist',
+        sub: 'Replacement of Lock Pin 8 No.',
+        hsn: '9987',
+        qty: 1,
+        rate: 7966,
+        per: ' ',
+        amount: 7966,
+      },
+      {
+        desc: 'Repairing of Chain Hoist',
+        sub: 'Replacement of Lock Pin 8 No.',
+        hsn: '9987',
+        qty: 1,
+        rate: 7966,
+        per: ' ',
+        amount: 7966,
+      },
+    ];
+
+    for (let i = 0; i < MAX_ROWS; i++) {
+      const item = items[i] || null;
+
+      allItemRows.push([
+        {
+          // Always use stack — real or empty
+          stack: [{ text: item ? String(i + 1) : '\u200B', fontSize: 8 }],
+          alignment: 'center',
+        },
+        {
+          // Always use stack with two lines — real or empty
+          stack: [
+            { text: item ? item.desc : '\u200B', fontSize: 10 },
+            { text: item?.sub ? item.sub : '\u200B', fontSize: 6 },
+          ],
+        },
+        {
+          stack: [{ text: item ? item.hsn : '\u200B', fontSize: 10 }],
+          alignment: 'center',
+        },
+        {
+          stack: [{ text: item ? String(item.qty) : '\u200B', fontSize: 10 }],
+          alignment: 'center',
+        },
+        {
+          stack: [{ text: item ? String(item.rate) : '\u200B', fontSize: 10 }],
+          alignment: 'right',
+        },
+        {
+          stack: [
+            { text: item ? item.per || '\u200B' : '\u200B', fontSize: 10 },
+          ],
+          alignment: 'center',
+        },
+        {
+          stack: [
+            { text: item ? String(item.amount) : '\u200B', fontSize: 10 },
+          ],
+          alignment: 'right',
+          bold: !!item,
+        },
+      ]);
+    }
+
+    const tableHeights = [
+      HEADER_ROW_HEIGHT,
+      ...Array(MAX_ROWS).fill(ITEM_ROW_HEIGHT),
+      TAX_ROW_HEIGHT,
+      TAX_ROW_HEIGHT,
+      TAX_ROW_HEIGHT,
+      TAX_ROW_HEIGHT,
+    ];
+
+    const itemRows = items.map((item, index) => [
+      {
+        text: index + 1,
+        alignment: 'center',
+        margin: [0, 3, 0, 3],
+        fontSize: 10,
+      },
+      {
+        stack: [
+          { text: item.desc, fontSize: 10 },
+          ...(item.sub ? [{ text: item.sub, fontSize: 6 }] : []),
+        ],
+        margin: [0, 3, 0, 3],
+      },
+      { text: item.hsn, alignment: 'center' },
+      { text: item.qty, alignment: 'center' },
+      { text: item.rate, alignment: 'right' },
+      { text: item.per, alignment: 'center' },
+      { text: item.amount.toString(), alignment: 'right', bold: true },
+    ]);
+
+    while (itemRows.length < MAX_ROWS) {
+      itemRows.push([
+        { text: '\u200B', alignment: 'center', bold: true },
+        { text: '\u200B', alignment: 'left' },
+        { text: '\u200B', alignment: 'center' },
+        { text: '\u200B', alignment: 'center' },
+        { text: '\u200B', alignment: 'right' },
+        { text: '\u200B', alignment: 'center' },
+        { text: '\u200B', alignment: 'right' },
+      ]);
+    }
+
+    const taxRows = [
+      [
+        {},
+        {
+          text: 'CGST',
+          alignment: 'right',
+          italics: true,
+          fontSize: 10,
+          margin: [0, 3, 0, 3],
+        },
+        {},
+        {},
+        {},
+        {},
+        {
+          text: '716.94',
+          alignment: 'right',
+          fontSize: 10,
+          margin: [0, 3, 0, 3],
+          border: [false, false, false, false],
+        },
+      ],
+      [
+        {},
+        {
+          text: 'SGST',
+          alignment: 'right',
+          italics: true,
+          fontSize: 10,
+          margin: [0, 3, 0, 3],
+        },
+        {},
+        {},
+        {},
+        {},
+        {
+          text: '716.94',
+          alignment: 'right',
+          fontSize: 10,
+          margin: [0, 3, 0, 3],
+        },
+      ],
+      [
+        {},
+        {
+          text: 'Round Off',
+          alignment: 'right',
+          italics: true,
+          fontSize: 10,
+          margin: [0, 3, 0, 3],
+          border: [false, false, false, false],
+        },
+        {},
+        {},
+        {},
+        {},
+        {
+          text: '0.12',
+          alignment: 'right',
+          fontSize: 10,
+          margin: [0, 3, 0, 3],
+        },
+      ],
+      [
+        {},
+        {
+          text: 'Total',
+          alignment: 'right',
+          italics: true,
+          fontSize: 11,
+          margin: [0, 3, 0, 3],
+        },
+        {},
+        {},
+        {},
+        {},
+        {
+          text: '12000',
+          alignment: 'right',
+          fontSize: 13,
+          bold: true,
+          margin: [0, 3, 0, 3],
+        },
+      ],
+    ];
+
     const docDefinition = {
       pageSize: 'A4',
       pageMargins: [40, 40, 40, 40],
@@ -27,7 +299,7 @@ export class AppComponent {
         {
           table: {
             widths: ['*', '*'],
-            heights: ['auto', 150, 200], // 👈 3 rows = 3 heights
+            heights: ['auto', 99, 290], // 👈 3 rows = 3 heights
             body: [
               [
                 //FIRST ROW
@@ -281,27 +553,267 @@ export class AppComponent {
                 {
                   colSpan: 2,
                   table: {
-                    widths: [17,230,45,45,45,20,'*'],
+                    widths: [17, 230, 45, 45, 45, 20, '*'],
+                    // heights: [
+                    //   HEADER_ROW_HEIGHT, // header row
+                    //   ...Array(MAX_ROWS).fill(ITEM_ROW_HEIGHT), // always 10 item rows
+                    //   TAX_ROW_HEIGHT, // CGST
+                    //   TAX_ROW_HEIGHT, // SGST
+                    //   TAX_ROW_HEIGHT, // Round Off
+                    //   TAX_ROW_HEIGHT, // Total
+                    // ],
+                    heights: tableHeights,
                     body: [
-                      [//description vala table uska row1 
-                        { 
-                          stack:[
-                            {text:"SI",fontSize:10,alignment: 'center'},
-                            {text:"No",fontSize:8,margin: [0, 0, 0, 0],alignment: 'center'}
+                      [
+                        //description vala table uska row 1
+                        {
+                          stack: [
+                            { text: 'SI', fontSize: 10, alignment: 'center' },
+                            {
+                              text: 'No',
+                              fontSize: 8,
+                              margin: [0, 0, 0, 0],
+                              alignment: 'center',
+                            },
                           ],
                           margin: [3, 3, 3, 3],
-                          alignment: 'center' // 👈 IMPORTANT (parent pe bhi)
+                          alignment: 'center', // 👈 IMPORTANT (parent pe bhi)
                         },
-                        { text: 'Description of Services',fontSize:9,margin: [0, 3, 0, 3],alignment: 'center'},
-                        { text: 'HSN/SAC',fontSize:9,margin: [0, 3, 0, 3],alignment: 'center' },
-                        { text: 'Quantity',fontSize:9,margin: [0, 3, 0, 3],alignment: 'center' },
-                        { text: 'Rate',fontSize:9,margin: [0, 3, 0, 3],alignment: 'center' },
-                        { text: 'per',fontSize:9,margin: [0, 3, 0, 3],alignment: 'center' },
-                        { text: 'Amount',fontSize:9,margin: [0, 3, 0, 3],alignment: 'center' }
+                        {
+                          text: 'Description of Services',
+                          fontSize: 8,
+                          margin: [0, 3, 0, 3],
+                          alignment: 'center',
+                        },
+                        {
+                          text: 'HSN/SAC',
+                          fontSize: 8,
+                          margin: [0, 3, 0, 3],
+                          alignment: 'center',
+                        },
+                        {
+                          text: 'Quantity',
+                          fontSize: 8,
+                          margin: [0, 3, 0, 3],
+                          alignment: 'center',
+                        },
+                        {
+                          text: 'Rate',
+                          fontSize: 8,
+                          margin: [0, 3, 0, 3],
+                          alignment: 'center',
+                        },
+                        {
+                          text: 'per',
+                          fontSize: 8,
+                          margin: [0, 3, 0, 3],
+                          alignment: 'center',
+                        },
+                        {
+                          text: 'Amount',
+                          fontSize: 8,
+                          margin: [0, 3, 0, 3],
+                          alignment: 'center',
+                        },
                       ],
                       // [
-                      //   //row 2 idhar likhna hain woh description and subdescription.
-                      // ]
+                      //   //row 2
+                      //   {
+                      //     text: '1',
+                      //     alignment: 'center',
+                      //     margin: [0, 3, 0, 3],
+                      //   },
+                      //   {
+                      //     stack: [
+                      //       { text: 'Repairing of Chain Hoist', fontSize: 10 },
+                      //       {
+                      //         text: 'Replacement of Lock Pin 8 No.',
+                      //         fontSize: 8,
+                      //       },
+                      //     ],
+                      //     margin: [3, 3, 3, 3],
+                      //   },
+                      //   {
+                      //     text: '9987',
+                      //     alignment: 'center',
+                      //   },
+                      //   {
+                      //     text: '1',
+                      //     alignment: 'center',
+                      //   },
+                      //   {
+                      //     text: '7966',
+                      //     alignment: 'right',
+                      //   },
+                      //   {
+                      //     text: ' ',
+                      //     alignment: 'center',
+                      //   },
+                      //   {
+                      //     text: '7966',
+                      //     alignment: 'right',
+                      //     bold: true,
+                      //   },
+                      // ],
+                      // [
+                      //   //row 3
+                      //   {
+                      //     text: '1',
+                      //     alignment: 'center',
+                      //     margin: [0, 3, 0, 3],
+                      //   },
+                      //   {
+                      //     stack: [
+                      //       { text: 'Repairing of Chain Hoist', fontSize: 10 },
+                      //       {
+                      //         text: 'Replacement of Lock Pin 8 No.',
+                      //         fontSize: 8,
+                      //       },
+                      //     ],
+                      //     margin: [3, 3, 3, 3],
+                      //   },
+                      //   {
+                      //     text: '9987',
+                      //     alignment: 'center',
+                      //   },
+                      //   {
+                      //     text: '1',
+                      //     alignment: 'center',
+                      //   },
+                      //   {
+                      //     text: '7966',
+                      //     alignment: 'right',
+                      //   },
+                      //   {
+                      //     text: ' ',
+                      //     alignment: 'center',
+                      //   },
+                      //   {
+                      //     text: '7966',
+                      //     alignment: 'right',
+                      //     bold: true,
+                      //   },
+                      // ],
+                      // [
+                      //   //row 4
+                      //   {
+                      //     text: '1',
+                      //     alignment: 'center',
+                      //     margin: [0, 3, 0, 3],
+                      //   },
+                      //   {
+                      //     stack: [
+                      //       { text: 'Repairing of Chain Hoist', fontSize: 10 },
+                      //       {
+                      //         text: 'Replacement of Lock Pin 8 No.',
+                      //         fontSize: 8,
+                      //       },
+                      //     ],
+                      //     margin: [3, 3, 3, 3],
+                      //   },
+                      //   {
+                      //     text: '9987',
+                      //     alignment: 'center',
+                      //   },
+                      //   {
+                      //     text: '1',
+                      //     alignment: 'center',
+                      //   },
+                      //   {
+                      //     text: '7966',
+                      //     alignment: 'right',
+                      //   },
+                      //   {
+                      //     text: ' ',
+                      //     alignment: 'center',
+                      //   },
+                      //   {
+                      //     text: '7966',
+                      //     alignment: 'right',
+                      //     bold: true,
+                      //   },
+                      // ],
+                      // [
+                      //   //row 5
+                      //   {
+                      //     text: '1',
+                      //     alignment: 'center',
+                      //     margin: [0, 3, 0, 3],
+                      //   },
+                      //   {
+                      //     stack: [
+                      //       { text: 'Repairing of Chain Hoist', fontSize: 10 },
+                      //       {
+                      //         text: 'Replacement of Lock Pin 8 No.',
+                      //         fontSize: 8,
+                      //       },
+                      //     ],
+                      //     margin: [3, 3, 3, 3],
+                      //   },
+                      //   {
+                      //     text: '9987',
+                      //     alignment: 'center',
+                      //   },
+                      //   {
+                      //     text: '1',
+                      //     alignment: 'center',
+                      //   },
+                      //   {
+                      //     text: '7966',
+                      //     alignment: 'right',
+                      //   },
+                      //   {
+                      //     text: ' ',
+                      //     alignment: 'center',
+                      //   },
+                      //   {
+                      //     text: '7966',
+                      //     alignment: 'right',
+                      //     bold: true,
+                      //   },
+                      // ],
+                      // [
+                      //   //row 6
+                      //   {
+                      //     text: '1',
+                      //     alignment: 'center',
+                      //     margin: [0, 3, 0, 3],
+                      //   },
+                      //   {
+                      //     stack: [
+                      //       { text: 'Repairing of Chain Hoist', fontSize: 10 },
+                      //       {
+                      //         text: 'Replacement of Lock Pin 8 No.',
+                      //         fontSize: 8,
+                      //       },
+                      //     ],
+                      //     margin: [3, 3, 3, 3],
+                      //   },
+                      //   {
+                      //     text: '9987',
+                      //     alignment: 'center',
+                      //   },
+                      //   {
+                      //     text: '1',
+                      //     alignment: 'center',
+                      //   },
+                      //   {
+                      //     text: '7966',
+                      //     alignment: 'right',
+                      //   },
+                      //   {
+                      //     text: ' ',
+                      //     alignment: 'center',
+                      //   },
+                      //   {
+                      //     text: '7966',
+                      //     alignment: 'right',
+                      //     bold: true,
+                      //   },
+                      // ],
+                      // ...itemRows, // dynamic
+                      ...allItemRows,
+                      ...taxRows, // CGST etc
                     ],
                   },
                   margin: [0, 0, 0, 0],
@@ -316,11 +828,48 @@ export class AppComponent {
                     //   return 0.5;
                     // },
                     // vLineWidth: (i: number, node: any) => (i === 0 ? 0 : 0.5),
+
+                    // hLineWidth: (i: number, node: any) => {
+                    //   // ❌ remove top & bottom outer lines
+                    //   if (i === 0) return 0;
+                    //   return 0.5;
+                    // },
+
                     hLineWidth: (i: number, node: any) => {
-                      // ❌ remove top & bottom outer lines
-                      if (i === 0) return 0;
-                      return 0.5;
+                      if (i === 0) return 0; // no top border
+                      if (i <= items.length + 1) return 0.5; // header + all 10 rows
+                      if (i === node.table.body.length - 1) return 0.5;
+                      // if (i === node.table.body.length) return 0.5; // bottom border of Total row
+                      return 0; // no lines between tax rows
                     },
+
+                    // hLineWidth: (i: number, node: any) => {
+                    //   // i = line index (row boundary)
+
+                    //   // 1. top border remove
+                    //   if (i === 0) return 0;
+
+                    //   // 2. header + item rows tak lines dikhani hain
+                    //   if (i <= items.length + 1) return 0.5;
+
+                    //   // 3. baaki sab (empty + tax rows) → no lines
+                    //   return 0;
+                    // },
+                    // hLineWidth: (i: number, node: any) => {
+                    //   const totalRows = node.table.body.length;
+
+                    //   // top border remove
+                    //   if (i === 0) return 0;
+
+                    //   // header + item rows
+                    //   if (i <= items.length + 1) return 0.5;
+
+                    //   // ❗ ONLY last line draw karo
+                    //   if (i === totalRows) return 0.5;
+
+                    //   // baaki sab remove
+                    //   return 0;
+                    // },
 
                     vLineWidth: (i: number, node: any) => {
                       // ❌ remove left & right outer lines
@@ -330,26 +879,35 @@ export class AppComponent {
                   },
                 },
               ],
-              // [//fourth row
-              //   {
-              //     colSpan: 2,
-              //     table:{
-              //       widths: [17,230,45,45,45,20,'*'],
-              //       body:[
-              //         [
-              //           {
-              //             stack:[
-              //               {text:"SI",fontSize:10,alignment: 'center'},
-              //               {text:"No",fontSize:8,margin: [0, 0, 0, 0],alignment: 'center'}
-              //             ],
-              //             margin: [3, 3, 3, 3],
-              //             alignment: 'center' // 👈 IMPORTANT (parent pe bhi)
-              //           }
-              //         ]
-              //       ]
-              //     }
-              //   }
-              // ],
+              [
+                //FOURTH ROW
+                {
+                  colSpan: 2,
+                  columns: [
+                    {
+                      width: '*',
+                      stack: [
+                        { text: 'Amount Chargeable (in words)', fontSize: 8 },
+                        {
+                          text: 'INR Nine Thousand Four Hundred Only',
+                          fontSize: 10,
+                          bold: true,
+                        },
+                      ],
+                      margin: [3, 0, 3, 0],
+                    },
+                    {
+                      width: 'auto',
+                      text: 'E. & O.E',
+                      fontSize: 8,
+                      alignment: 'right',
+                      margin: [3, 0, 3, 0],
+                    },
+                  ],
+                  border: [true, true, true, true], // optional
+                },
+                {},
+              ],
             ],
           },
           layout: {
