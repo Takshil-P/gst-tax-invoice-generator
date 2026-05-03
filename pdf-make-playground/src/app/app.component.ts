@@ -110,6 +110,15 @@ export class AppComponent {
         per: ' ',
         amount: 7966,
       },
+      {
+        desc: 'Repairing of Chain Hoist',
+        sub: 'Replacement of Lock Pin 8 No.',
+        hsn: '9987',
+        qty: 1,
+        rate: 7966,
+        per: ' ',
+        amount: 7966,
+      },
     ];
 
     for (let i = 0; i < MAX_ROWS; i++) {
@@ -905,6 +914,200 @@ export class AppComponent {
                     },
                   ],
                   border: [true, true, true, true], // optional
+                },
+                {},
+              ],
+              [
+                //fifth row
+
+                {
+                  colSpan: 2,
+                  table: {
+                    widths: [150, 80, 40, 60, 40, 60, '*'],
+                    body: [
+                      // ── HEADER ROW 1 ──
+                      [
+                        {
+                          text: 'HSN/SAC',
+                          alignment: 'center',
+                          fontSize: 8,
+                          rowSpan: 2,
+                        },
+                        {
+                          text: 'Taxable\nValue',
+                          alignment: 'center',
+                          fontSize: 8,
+                          rowSpan: 2,
+                        },
+                        {
+                          text: 'Central Tax',
+                          alignment: 'center',
+                          fontSize: 8,
+                          colSpan: 2,
+                        },
+                        {}, // colSpan placeholder
+                        {
+                          text: 'State Tax',
+                          alignment: 'center',
+                          fontSize: 8,
+                          colSpan: 2,
+                        },
+                        {}, // colSpan placeholder
+                        {
+                          text: 'Total\nTax Amount',
+                          alignment: 'center',
+                          fontSize: 8,
+                          rowSpan: 2,
+                        },
+                      ],
+                      // ── HEADER ROW 2 (Rate/Amount sub-headers) ──
+                      [
+                        {}, // rowSpan placeholder for HSN/SAC
+                        {}, // rowSpan placeholder for Taxable Value
+                        { text: 'Rate', alignment: 'center', fontSize: 8 },
+                        { text: 'Amount', alignment: 'center', fontSize: 8 },
+                        { text: 'Rate', alignment: 'center', fontSize: 8 },
+                        { text: 'Amount', alignment: 'center', fontSize: 8 },
+                        {}, // rowSpan placeholder for Total Tax Amount
+                      ],
+                      // ── DATA ROW ──
+                      [
+                        { text: '9987', alignment: 'left', fontSize: 9 },
+                        { text: '7,966.00', alignment: 'right', fontSize: 9 },
+                        { text: '9%', alignment: 'center', fontSize: 9 },
+                        { text: '716.94', alignment: 'right', fontSize: 9 },
+                        { text: '9%', alignment: 'center', fontSize: 9 },
+                        { text: '716.94', alignment: 'right', fontSize: 9 },
+                        { text: '1,433.88', alignment: 'right', fontSize: 9 },
+                      ],
+                      // ── TOTAL ROW ──
+                      [
+                        {
+                          text: 'Total',
+                          alignment: 'right',
+                          fontSize: 9,
+                          bold: true,
+                        },
+                        {
+                          text: '7,966.00',
+                          alignment: 'right',
+                          fontSize: 9,
+                          bold: true,
+                        },
+                        { text: '', fontSize: 9 },
+                        {
+                          text: '716.94',
+                          alignment: 'right',
+                          fontSize: 9,
+                          bold: true,
+                        },
+                        { text: '', fontSize: 9 },
+                        {
+                          text: '716.94',
+                          alignment: 'right',
+                          fontSize: 9,
+                          bold: true,
+                        },
+                        {
+                          text: '1,433.88',
+                          alignment: 'right',
+                          fontSize: 9,
+                          bold: true,
+                        },
+                      ],
+                    ],
+                  },
+                  layout: {
+                    hLineWidth: (i: number, node: any) => {
+                      if (i === 0 || i === node.table.body.length) return 0; // remove top + bottom outer borders
+                      return 0.5;
+                    },
+                    vLineWidth: (i: number, node: any) => {
+                      if (i === 0 || i === node.table.widths.length) return 0; // remove left + right outer borders
+                      return 0.5;
+                    },
+                    paddingLeft: () => 3,
+                    paddingRight: () => 3,
+                    paddingTop: () => 2,
+                    paddingBottom: () => 2,
+                  },
+                },
+                {}, // colSpan placeholder for outer table
+              ],
+              // SIXTH ROW — Tax Amount in words
+              [
+                {
+                  colSpan: 2,
+                  stack: [
+                    {
+                      text: [
+                        { text: 'Tax Amount (in words) : ', fontSize: 9 },
+                        {
+                          text: 'INR One Thousand Four Hundred Thirty Three and Eighty Eight paise Only',
+                          fontSize: 9,
+                          bold: true,
+                        },
+                      ],
+                    },
+                  ],
+                  margin: [5, 3, 5, 3],
+                },
+                {},
+              ],
+
+              // SEVENTH ROW — Company PAN
+              [
+                {
+                  colSpan: 2,
+                  text: [
+                    { text: "Company's PAN  ", fontSize: 9 },
+                    { text: '          :  ', fontSize: 9 },
+                    { text: 'ALBPP3245Q', fontSize: 9, bold: true },
+                  ],
+                  margin: [5, 3, 5, 3],
+                },
+                {},
+              ],
+
+              // EIGHTH ROW — Declaration + Signatory
+              [
+                {
+                  stack: [
+                    { text: 'Declaration', fontSize: 9, bold: true },
+                    {
+                      text: 'We declare that this invoice shows the actual price of the goods described and that all particulars are true and correct.',
+                      fontSize: 8,
+                    },
+                  ],
+                  margin: [5, 3, 5, 3],
+                },
+                {
+                  stack: [
+                    {
+                      text: 'for Aashapuri Industries',
+                      fontSize: 9,
+                      bold: true,
+                      alignment: 'right',
+                    },
+                    { text: '\n\n\n' },
+                    {
+                      text: 'Authorised Signatory',
+                      fontSize: 8,
+                      alignment: 'right',
+                    },
+                  ],
+                  margin: [5, 3, 5, 3],
+                },
+              ],
+
+              // NINTH ROW — Computer Generated
+              [
+                {
+                  colSpan: 2,
+                  text: 'This is a Computer Generated Invoice',
+                  fontSize: 8,
+                  alignment: 'center',
+                  margin: [0, 4, 0, 4],
                 },
                 {},
               ],
