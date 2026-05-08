@@ -37,6 +37,9 @@ Experimental prototype / learning project.
 
 ## Screenshots
 
-<img width="1905" height="869" alt="image-3" src="https://github.com/user-attachments/assets/f727e658-8997-4ad2-9d6e-78087140cf2e" />
+
+<img width="1920" height="2072" alt="screencapture-localhost-4200-2026-05-08-16_03_22" src="https://github.com/user-attachments/assets/eff2587a-8e42-4b26-8f17-b1ed8f22032b" />
 <img width="1894" height="833" alt="image-2" src="https://github.com/user-attachments/assets/117d5faf-23c6-4288-a292-957b154ec020" />
-<img width="1897" height="804" alt="image 1" src="https://github.com/user-attachments/assets/616074b5-ec9b-42f5-a4b9-044c90a91557" />
+<img width="1905" height="869" alt="image-3" src="https://github.com/user-attachments/assets/f727e658-8997-4ad2-9d6e-78087140cf2e" />
+
+
