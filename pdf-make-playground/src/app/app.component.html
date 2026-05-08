@@ -1,1 +1,257 @@
-<button (click)="testDeclaration()">Generate PDF</button>
+<!-- <div style="max-width: 800px; margin: 20px auto; padding: 20px;"> -->
+  <!-- <h2>Tax Invoice Generator</h2> -->
+
+  <!-- <form [formGroup]="invoiceForm"> -->
+
+    <!-- SELLER SECTION -->
+    <!-- <h3>Seller Details</h3> -->
+    <!-- <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;"> -->
+      <!-- <mat-form-field appearance="outline"> -->
+        <!-- <mat-label>Company Name</mat-label> -->
+        <!-- <input matInput formControlName="sellerName"> -->
+      <!-- </mat-form-field> -->
+      <!-- <mat-form-field appearance="outline"> -->
+        <!-- <mat-label>Address</mat-label> -->
+        <!-- <input matInput formControlName="sellerAddress"> -->
+      <!-- </mat-form-field> -->
+      <!-- <mat-form-field appearance="outline"> -->
+        <!-- <mat-label>City</mat-label> -->
+        <!-- <input matInput formControlName="sellerCity"> -->
+      <!-- </mat-form-field> -->
+      <!-- <mat-form-field appearance="outline"> -->
+        <!-- <mat-label>GSTIN</mat-label> -->
+        <!-- <input matInput formControlName="sellerGstin"> -->
+      <!-- </mat-form-field> -->
+      <!-- <mat-form-field appearance="outline"> -->
+        <!-- <mat-label>Email</mat-label> -->
+        <!-- <input matInput formControlName="sellerEmail"> -->
+      <!-- </mat-form-field> -->
+      <!-- <mat-form-field appearance="outline"> -->
+        <!-- <mat-label>PAN</mat-label> -->
+        <!-- <input matInput formControlName="pan"> -->
+      <!-- </mat-form-field> -->
+    <!-- </div> -->
+
+    <!-- INVOICE META -->
+    <!-- <h3>Invoice Details</h3> -->
+    <!-- <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;"> -->
+      <!-- <mat-form-field appearance="outline"> -->
+        <!-- <mat-label>Invoice No.</mat-label> -->
+        <!-- <input matInput formControlName="invoiceNo"> -->
+      <!-- </mat-form-field> -->
+      <!-- <mat-form-field appearance="outline"> -->
+        <!-- <mat-label>Date</mat-label> -->
+        <!-- <input matInput formControlName="invoiceDate"> -->
+      <!-- </mat-form-field> -->
+      <!-- <mat-form-field appearance="outline"> -->
+        <!-- <mat-label>Destination</mat-label> -->
+        <!-- <input matInput formControlName="destination"> -->
+      <!-- </mat-form-field> -->
+      <!-- <mat-form-field appearance="outline"> -->
+        <!-- <mat-label>Terms of Delivery</mat-label> -->
+        <!-- <input matInput formControlName="termsOfDelivery"> -->
+      <!-- </mat-form-field> -->
+    <!-- </div> -->
+
+    <!-- BUYER SECTION -->
+    <!-- <h3>Buyer Details</h3> -->
+    <!-- <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;"> -->
+      <!-- <mat-form-field appearance="outline"> -->
+        <!-- <mat-label>Buyer Name</mat-label> -->
+        <!-- <input matInput formControlName="buyerName"> -->
+      <!-- </mat-form-field> -->
+      <!-- <mat-form-field appearance="outline"> -->
+        <!-- <mat-label>Address</mat-label> -->
+        <!-- <input matInput formControlName="buyerAddress"> -->
+      <!-- </mat-form-field> -->
+      <!-- <mat-form-field appearance="outline"> -->
+        <!-- <mat-label>City</mat-label> -->
+        <!-- <input matInput formControlName="buyerCity"> -->
+      <!-- </mat-form-field> -->
+      <!-- <mat-form-field appearance="outline"> -->
+        <!-- <mat-label>GSTIN</mat-label> -->
+        <!-- <input matInput formControlName="buyerGstin"> -->
+      <!-- </mat-form-field> -->
+      <!-- <mat-form-field appearance="outline"> -->
+        <!-- <mat-label>Email</mat-label> -->
+        <!-- <input matInput formControlName="buyerEmail"> -->
+      <!-- </mat-form-field> -->
+    <!-- </div> -->
+
+    <!-- ITEMS SECTION -->
+    <!-- <h3>Items (max {{MAX_ROWS}})</h3> -->
+    <!-- <div formArrayName="items"> -->
+      <!-- <div *ngFor="let item of items.controls; let i = index" -->
+           <!-- [formGroupName]="i" -->
+           <!-- style="border: 1px solid #ddd; padding: 12px; margin-bottom: 8px; border-radius: 4px;"> -->
+
+        <!-- <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;"> -->
+          <!-- <strong>Item {{i + 1}}</strong>
+          <button mat-icon-button color="warn" type="button"
+                  (click)="removeItem(i)" [disabled]="items.length === 1">
+            <mat-icon>delete</mat-icon>
+          </button> -->
+        <!-- </div> -->
+
+        <!-- <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 12px;"> -->
+          <!-- <mat-form-field appearance="outline">
+            <mat-label>Description</mat-label>
+            <input matInput formControlName="desc">
+          </mat-form-field> -->
+          <!-- <mat-form-field appearance="outline">
+            <mat-label>Sub Description</mat-label>
+            <input matInput formControlName="sub">
+          </mat-form-field> -->
+        <!-- </div> -->
+
+        <!-- <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr; gap: 12px;"> -->
+          <!-- <mat-form-field appearance="outline">
+            <mat-label>HSN/SAC</mat-label>
+            <input matInput formControlName="hsn">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Qty</mat-label>
+            <input matInput type="number" formControlName="qty"
+                   (input)="calculateAmount(i)">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Rate</mat-label>
+            <input matInput type="number" formControlName="rate"
+                   (input)="calculateAmount(i)">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Per</mat-label>
+            <input matInput formControlName="per">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Amount</mat-label>
+            <input matInput formControlName="amount" readonly>
+          </mat-form-field> -->
+        <!-- </div> -->
+      <!-- </div> -->
+    <!-- </div> -->
+<!-- 
+    <button mat-stroked-button type="button" (click)="addItem()"
+            [disabled]="items.length >= MAX_ROWS"
+            style="margin-bottom: 16px;">
+      <mat-icon>add</mat-icon> Add Item
+    </button> -->
+
+    <!-- TAX -->
+    <!-- <h3>Tax Details</h3> -->
+    <!-- <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+      <mat-form-field appearance="outline">
+        <mat-label>CGST %</mat-label>
+        <input matInput type="number" formControlName="cgstRate">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>SGST %</mat-label>
+        <input matInput type="number" formControlName="sgstRate">
+      </mat-form-field>
+    </div> -->
+
+    <!-- SUMMARY -->
+    <!-- <div style="background: #f5f5f5; padding: 12px; border-radius: 4px; margin-bottom: 16px;">
+      <div>Taxable Value: ₹ {{formatAmount(taxableValue)}}</div>
+      <div>CGST ({{invoiceForm.get('cgstRate')?.value}}%): ₹ {{formatAmount(cgstAmount)}}</div>
+      <div>SGST ({{invoiceForm.get('sgstRate')?.value}}%): ₹ {{formatAmount(sgstAmount)}}</div>
+      <div>Round Off: ₹ {{roundOff}}</div>
+      <strong>Total: ₹ {{formatAmount(grandTotal)}}</strong>
+    </div> -->
+
+    <!-- GENERATE BUTTON -->
+    <!-- <button mat-raised-button color="primary" type="button"
+            (click)="generatePDF()">
+      Generate PDF
+    </button> -->
+
+  <!-- </form> -->
+<!-- </div> -->
+
+<div style="max-width:800px; margin:20px auto; padding:20px;">
+  <h2>Tax Invoice Generator</h2>
+
+  <form [formGroup]="invoiceForm">
+
+    <h3>Seller</h3>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+      <mat-form-field appearance="outline"><mat-label>Company Name</mat-label><input matInput formControlName="sellerName"></mat-form-field>
+      <mat-form-field appearance="outline"><mat-label>Address</mat-label><input matInput formControlName="sellerAddress"></mat-form-field>
+      <mat-form-field appearance="outline"><mat-label>City</mat-label><input matInput formControlName="sellerCity"></mat-form-field>
+      <mat-form-field appearance="outline"><mat-label>Vendor Code</mat-label><input matInput formControlName="sellerCode"></mat-form-field>
+      <mat-form-field appearance="outline"><mat-label>GSTIN</mat-label><input matInput formControlName="sellerGstin"></mat-form-field>
+      <mat-form-field appearance="outline"><mat-label>Email</mat-label><input matInput formControlName="sellerEmail"></mat-form-field>
+      <mat-form-field appearance="outline"><mat-label>PAN</mat-label><input matInput formControlName="pan"></mat-form-field>
+    </div>
+
+    <h3>Invoice Meta</h3>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+      <mat-form-field appearance="outline"><mat-label>Invoice No.</mat-label><input matInput formControlName="invoiceNo"></mat-form-field>
+      <mat-form-field appearance="outline"><mat-label>Date</mat-label><input matInput formControlName="invoiceDate"></mat-form-field>
+      <mat-form-field appearance="outline"><mat-label>Destination</mat-label><input matInput formControlName="destination"></mat-form-field>
+      <mat-form-field appearance="outline"><mat-label>Terms of Delivery</mat-label><input matInput formControlName="termsOfDelivery"></mat-form-field>
+    </div>
+
+    <h3>Buyer</h3>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+      <mat-form-field appearance="outline"><mat-label>Buyer Name</mat-label><input matInput formControlName="buyerName"></mat-form-field>
+      <mat-form-field appearance="outline"><mat-label>Address</mat-label><input matInput formControlName="buyerAddress"></mat-form-field>
+      <mat-form-field appearance="outline"><mat-label>City</mat-label><input matInput formControlName="buyerCity"></mat-form-field>
+      <mat-form-field appearance="outline"><mat-label>Area</mat-label><input matInput formControlName="buyerArea"></mat-form-field>
+      <mat-form-field appearance="outline"><mat-label>Email</mat-label><input matInput formControlName="buyerEmail"></mat-form-field>
+      <mat-form-field appearance="outline"><mat-label>GSTIN</mat-label><input matInput formControlName="buyerGstin"></mat-form-field>
+    </div>
+
+    <h3>Items (max {{MAX_ROWS}})</h3>
+    <div formArrayName="items">
+      <div *ngFor="let item of itemsArray.controls; let i = index"
+           [formGroupName]="i"
+           style="border:1px solid #ddd; padding:12px; margin-bottom:8px; border-radius:4px;">
+
+        <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+          <strong>Item {{i+1}}</strong>
+          <button mat-icon-button color="warn" type="button"
+                  (click)="removeItem(i)" [disabled]="itemsArray.length === 1">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+
+        <div style="display:grid; grid-template-columns:2fr 1fr; gap:12px;">
+          <mat-form-field appearance="outline"><mat-label>Description</mat-label><input matInput formControlName="desc"></mat-form-field>
+          <mat-form-field appearance="outline"><mat-label>Sub Description</mat-label><input matInput formControlName="sub"></mat-form-field>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr 1fr; gap:12px;">
+          <mat-form-field appearance="outline"><mat-label>HSN/SAC</mat-label><input matInput formControlName="hsn"></mat-form-field>
+          <mat-form-field appearance="outline"><mat-label>Qty</mat-label><input matInput type="number" formControlName="qty" (input)="calculateAmount(i)"></mat-form-field>
+          <mat-form-field appearance="outline"><mat-label>Rate</mat-label><input matInput type="number" formControlName="rate" (input)="calculateAmount(i)"></mat-form-field>
+          <mat-form-field appearance="outline"><mat-label>Per</mat-label><input matInput formControlName="per"></mat-form-field>
+          <mat-form-field appearance="outline"><mat-label>Amount</mat-label><input matInput formControlName="amount" readonly></mat-form-field>
+        </div>
+      </div>
+    </div>
+
+    <button mat-stroked-button type="button" (click)="addItem()"
+            [disabled]="itemsArray.length >= MAX_ROWS" style="margin-bottom:16px;">
+      <mat-icon>add</mat-icon> Add Item
+    </button>
+
+    <h3>Tax</h3>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+      <mat-form-field appearance="outline"><mat-label>CGST %</mat-label><input matInput type="number" formControlName="cgstRate"></mat-form-field>
+      <mat-form-field appearance="outline"><mat-label>SGST %</mat-label><input matInput type="number" formControlName="sgstRate"></mat-form-field>
+    </div>
+
+    <div style="background:#f5f5f5; padding:12px; border-radius:4px; margin-bottom:16px;">
+      <div>Taxable: ₹ {{formatAmount(taxableValue)}}</div>
+      <div>CGST: ₹ {{formatAmount(cgstAmount)}}</div>
+      <div>SGST: ₹ {{formatAmount(sgstAmount)}}</div>
+      <div>Round Off: {{roundOff}}</div>
+      <strong>Total: ₹ {{formatAmount(grandTotal)}}</strong>
+    </div>
+
+    <button mat-raised-button color="primary" type="button" (click)="testDeclaration()">
+      Generate PDF
+    </button>
+
+  </form>
+</div>
